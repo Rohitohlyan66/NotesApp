@@ -1,5 +1,6 @@
 package com.example.mynotes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         notesList=new ArrayList<>();
-
         databaseClass=new DatabaseClass(this);
         fetchAllNotesFromDatabase();
 
@@ -100,4 +100,24 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId()==R.id.delete_all_notes)
+        {
+            deleteAllNotes();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllNotes()
+    {
+        DatabaseClass db =new DatabaseClass(MainActivity.this);
+        db.deleteAllNotes();
+        recreate();
+    }
+
 }

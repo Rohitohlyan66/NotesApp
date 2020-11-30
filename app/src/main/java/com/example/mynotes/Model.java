@@ -6,7 +6,7 @@ public class Model {
         String description;
         String id;
 
-    public Model(String title, String description, String id) {
+    public Model(String id, String title, String description) {
         this.title = title;
         this.description = description;
         this.id = id;
