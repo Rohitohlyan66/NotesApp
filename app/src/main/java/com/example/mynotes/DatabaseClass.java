@@ -83,4 +83,25 @@ public class DatabaseClass extends SQLiteOpenHelper {
         database.execSQL(query);
     }
 
+    void updateNotes(String title,String description,String id)
+    {
+        SQLiteDatabase database=this.getWritableDatabase();
+
+        ContentValues cv=new ContentValues();
+        cv.put(ColumnTitle,title);
+        cv.put(ColumnDescription,description);
+
+        long result=database.update(TableName,cv,"id=?",new String[]{id});
+        if (result==-1)
+        {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
 }
